@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit' 
 
-createSlice({
+export const taskSlice = createSlice({
     name: 'tasks',
     initialState:[],
     reducers: {
@@ -8,4 +8,4 @@ createSlice({
     }
 })
 
-export default tasklice.reducer
+export default taskSlice.reducer

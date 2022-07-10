@@ -77,7 +77,7 @@ Posteriormente desde esa ruta se pueden crear carpetas segun el contexto de func
 ```Javascript 
 import { createSlice } from '@reduxjs/toolkit' 
 
-createSlice({
+export const taskSlice = createSlice({
     name: 'tasks',
     initialState:[],
     reducers: {
@@ -85,7 +85,7 @@ createSlice({
     }
 })
 
-export default tasklice.reducer
+export default taskSlice.reducer
 ```
 2. Importarlo desde el store.js
 ```javascript
@@ -97,4 +97,35 @@ export const store = configureStore({
     tasks: taskReducer
   },
 })
+```
+---
+
+## **Desde los componentes**
+Importar el useDispatch o useSelector
+- **useDispatch** es para hacer algo
+- **useSelector** es para traer algo
+``` javascript
+import {useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
+```
+  
+### **Desde el componente App**
+``` Javascript
+import {useSelector} from 'react-redux';
+
+function App() {
+  
+  //Desde la store obtener el estado de las tareas
+  const taskState = useSelector(state => state.tasks)
+
+  return (
+    <div className="App">
+      <p>Hola Mundo</p>
+
+    </div>
+  )
+}
+
+export default App
+
 ```
