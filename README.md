@@ -65,7 +65,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   
 ```
 ---
-## **Crear Reducers**
+## **Crear Estado**
 Los reducers son la forma en la cual se podrá modificar el estado de la store. Se puede contrastar con el setState en los estados de react.
 
 > Se recomienda crear los Reducers en **src/features/carpeta**
@@ -109,7 +109,8 @@ import {useSelector} from 'react-redux'
 import {useDispatch} from 'react-redux'
 ```
   
-### **Desde el componente App**
+### **Desde el componente para leer el estado**
+Se utiliza el useSelector
 ``` Javascript
 import {useSelector} from 'react-redux';
 
@@ -128,4 +129,59 @@ function App() {
 
 export default App
 
+```
+---
+## **Crear Reducers para modificar el estado**
+Desde taskSlice.js, se agrega el reducer, el cual es una función que recibel el state actual y un action.
+```javascript
+export const taskSlice = createSlice({
+    name: 'tasks',
+    initialState,
+    reducers: {
+        addTask: (state,action) => {
+            state.push(action.payload)
+        }
+    }
+})
+```
+
+Se exportan los reducers que se deseen al final del script
+```javascript
+
+//Se exporta el reducer y el estado Tasks
+export const {addTask} = taskSlice.actions
+export default taskSlice.reducer
+```
+
+### **Desde componente para cambiar el estado**
+Se utiliza el useDispatch, se importa junto al reducer que se requiera
+```javascript
+//Para usar un reducer, disparar eventos
+import { useDispatch } from "react-redux"
+import { addTask } from '../features/tasks/taskSlice'
+```
+
+Para ejecutar el cambio en el state:
+```javascript
+ //Se importa el useDispatch como si fuera un hook en la parte superior
+ const dispatch = useDispatch();
+
+ //El parametro en addTask es conocido como payload
+ dispatch(addTask(task));
+```
+---
+
+## **Crear ID unicos con librería**
+```
+npm install uuid
+```
+Importar
+```javascript
+//V4 es uno de los estandar de id
+import {v4 as uuid} from 'uuid';
+```
+
+Generar un ID único
+```javascript
+const id = uuid();
 ```
