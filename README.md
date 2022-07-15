@@ -185,3 +185,83 @@ Generar un ID único
 ```javascript
 const id = uuid();
 ```
+---
+
+## **React Router**
+[Documentation>>>](https://reactrouter.com/)
+
+### **Instalación**
+Desde el proyecto con react establecido:
+
+```javascript
+npm install react-router-dom@6
+```
+
+### **Implementación**
+```Javascript
+//Se importa React router en el componente App
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+...
+
+//Se envuelven los componentes a cargar por rutas en las siguientes etiquetas:
+
+<BrowserRouter>
+  <Routes>
+    
+    {/* Componente que se carga por defecto ruta raíz */}
+    <Route path='/' element={<Componente1 />} />
+    
+    {/* Componente que carga en la url/component2 */}
+    <Route path='/component2' element={<Componente2 />}/>
+    
+  </Routes>
+</BrowserRouter>
+
+```
+
+## **Navegar entre las rutas**
+
+### **Link**
+Importar Link para navegar al pulsar sobre ciertos elementos, es la alternativa sin anchor <*a*> para evitar el refresh de la página.
+
+```javascript
+import {Link} from 'react-router-dom';
+
+...
+
+// Colocar la etiqueta Link para la redireccion al darle click al elemento
+<Link to='/ruta'> Ir a la ruta </Link>
+```
+
+### **useNavigate**
+Importar el hook useNavigate para navegar en un momento dado con JavaScript
+```javascript
+import {useNavigate} from 'react-router-dom';
+
+...
+
+// Establecemos el hook en el componente deseado
+const navigate = useNavigate();
+
+...
+
+// Para redireccionar a una ruta
+navigate('/componente2');
+```
+
+### **Leer parametros en el url de la pagin**
+Se utiliza el hook useParams
+
+```javascript
+import {useParams} from 'react-router-dom';
+
+...
+
+// Para obtener un objeto con los parametros de la url
+const params = useParams();
+```
+
+---
+
+## [**Tailwind CSS >>> Guía en otro de mis repos** :rocket:](https://github.com/Leo-Zubiri/React-TailwindCSS/blob/master/readme.md)
